@@ -1,0 +1,33 @@
+name: Make Week Posts (Schedule လုပ်ရန်)
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "နောက်ရက် ဘယ်နှရက်စာ ထုတ်မလဲ"
+        default: "7"
+
+permissions:
+  contents: write
+
+jobs:
+  week:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-core
+      - name: Make posts
+        run: python3 make_week.py "${{ inputs.days }}"
+      - name: Save (download လုပ်ယူရန်)
+        uses: actions/upload-artifact@v4
+        with:
+          name: week-posts-${{ github.run_number }}
+          path: week/*
+      - name: Commit week/ (ဖုန်းက URL နဲ့ ယူနိုင်ရန် - repo ကို Public ထားမှ raw URL အလုပ်လုပ်)
+        run: |
+          git config user.name "live-bot"
+          git config user.email "live-bot@users.noreply.github.com"
+          git add -A week
+          git diff --cached --quiet || (git commit -m "week posts $(date -u +%F)" && git pull --rebase && git push)
