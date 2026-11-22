@@ -1,42 +1,223 @@
 <!DOCTYPE html>
-<html lang="my" translate="no">
+<html lang="my">
 <head>
-<meta charset="UTF-8">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 1024px; height: 1024px; }
-  body {
-    font-family: "Noto Sans Myanmar", Arial, sans-serif; color: #2b1500; font-weight: 700;
-    background: radial-gradient(circle at 50% 45%, #f7d655 0%, #e2ac22 70%, #cf9714 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-    padding: 44px 40px; text-align: center;
-  }
-  .date { font: 800 72px Arial, sans-serif; }
-  .label { font-size: 38px; margin-bottom: 6px; }
-  .big { font: 800 150px/1.05 Arial, sans-serif; letter-spacing: 2px; }
-  .big.pairs { font-size: 124px; }
-  .note {
-    width: 100%; background: rgba(255,255,255,.6); border: 4px solid #2b1500; border-radius: 22px;
-    padding: 22px 26px; font-size: 33px; line-height: 1.6;
-  }
-  .note small { display: block; font-size: 29px; margin-top: 6px; }
-  .brand { font: 800 44px Arial, sans-serif; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>18.11.2026 (WEDNESDAY) - Top</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Padauk:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #140202;
+      font-family: "Fredoka", "Padauk", sans-serif;
+      padding: 16px;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 18px 26px;
+      /* Deep crimson background with subtle vertical wood/curtain grain */
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 90, 60, 0.045) 0px,
+          rgba(255, 90, 60, 0.045) 2px,
+          rgba(0, 0, 0, 0.16) 2px,
+          rgba(0, 0, 0, 0.16) 5px,
+          rgba(255, 120, 80, 0.03) 5px,
+          rgba(255, 120, 80, 0.03) 9px
+        ),
+        radial-gradient(circle at 50% 42%, #c91308 0%, #8e0602 58%, #520200 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+    }
+
+    /* Subtle dark vignette around edges */
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.65);
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Shared lime-green outline text style */
+    .lime-outline {
+      color: #a8ff1a;
+      -webkit-text-stroke: 2.2px #141a04;
+      paint-order: stroke fill;
+      text-shadow:
+        0 3px 0 #141a04,
+        0 5px 8px rgba(0, 0, 0, 0.65);
+    }
+
+    .date-header {
+      font-size: clamp(1.35rem, 4.6vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .top-title {
+      font-size: clamp(2.6rem, 9vw, 4.3rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-top: -6px;
+      letter-spacing: 1px;
+    }
+
+    /* Row of 11 gold stars */
+    .stars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(3px, 1vw, 7px);
+      margin-top: -4px;
+    }
+
+    .star {
+      width: clamp(18px, 4.2vw, 28px);
+      height: clamp(18px, 4.2vw, 28px);
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.65));
+    }
+
+    /* Three glowing red number circles */
+    .circles {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(14px, 4vw, 30px);
+      width: 100%;
+      margin: 4px 0;
+    }
+
+    .circle-btn {
+      width: clamp(92px, 24vw, 142px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(
+        circle at 50% 45%,
+        #d6180c 0%,
+        #9e0903 68%,
+        #680300 100%
+      );
+      border: 2.5px solid rgba(255, 215, 195, 0.85);
+      box-shadow:
+        0 0 14px 3px rgba(255, 190, 160, 0.55),
+        0 0 28px 6px rgba(255, 90, 50, 0.35),
+        inset 0 0 18px rgba(0, 0, 0, 0.55);
+    }
+
+    .circle-num {
+      font-size: clamp(3.1rem, 9.5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1;
+      -webkit-text-stroke: 3px #141a04;
+      transform: translateY(-2px);
+    }
+
+    /* Burmese callout line */
+    .burmese-cta {
+      font-family: "Padauk", "Fredoka", sans-serif;
+      font-size: clamp(1.25rem, 4.3vw, 1.95rem);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .burmese-cta .sub-eng {
+      font-family: "Fredoka", sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    /* Footer with clovers and channel name */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 2.2vw, 14px);
+      white-space: nowrap;
+    }
+
+    .clover {
+      font-size: clamp(1.3rem, 4.2vw, 1.9rem);
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+    }
+
+    .brand-name {
+      font-size: clamp(1.35rem, 4.5vw, 2.05rem);
+      font-weight: 700;
+      letter-spacing: 0.6px;
+    }
+  </style>
 </head>
 <body>
-  <div class="date">{{DATE}} ({{SLOT}})</div>
-  <div>
-    <div class="label">ကျပန်းဂဏန်း ၃ လုံး</div>
-    <div class="big">{{D1}}. {{D2}}. {{D3}}</div>
-  </div>
-  <div>
-    <div class="label">တွဲဂဏန်းများ</div>
-    <div class="big pairs">{{P1}}*{{P2}}.{{P3}}</div>
-  </div>
-  <div class="note">
-    ဤဂဏန်းများသည် Auto generate လုပ်ထားသော တန်ဖိုးများသာ ဖြစ်ပါသည်။
-    <small>ခန့်မှန်းချက် မဟုတ်ပါ၊ ထိုးရန် အကြံပြုခြင်း မဟုတ်ပါ။ ပညာပေး၊ ဖျော်ဖြေရေးအတွက်သာ။</small>
-  </div>
-  <div class="brand">2D3D Live</div>
+  <main class="card" aria-label="18.11.2026 Wednesday Top Numbers Card">
+    <div class="date-header lime-outline">18.11.2026( WEDNESDAY )</div>
+
+    <div class="top-title lime-outline">Top</div>
+
+    <div class="stars" aria-hidden="true">
+      <!-- 11 gold stars -->
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path fill="#ffc400" stroke="#5c2800" stroke-width="1.2" d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+    </div>
+
+    <div class="circles">
+      <div class="circle-btn"><span class="circle-num lime-outline">0</span></div>
+      <div class="circle-btn"><span class="circle-num lime-outline">1</span></div>
+      <div class="circle-btn"><span class="circle-num lime-outline">2</span></div>
+    </div>
+
+    <div class="burmese-cta lime-outline">
+      အမြဲမြင်ရအောင် <span class="sub-eng">SUB</span> နှိပ်ထားပါ
+    </div>
+
+    <footer class="footer">
+      <span class="clover" aria-hidden="true">🍀</span>
+      <span class="brand-name lime-outline">U WAI OFFICIAL</span>
+      <span class="clover" aria-hidden="true">🍀</span>
+    </footer>
+  </main>
 </body>
 </html>
