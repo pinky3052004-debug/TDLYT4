@@ -4,303 +4,168 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2D3D Live</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<title>2D3D Live (Gray)</title>
 <style>
-  :root {
-    --bg: #f5d44f;
-    --red: #d42027;
-    --red-dark: #a82328;
-    --card: #f1f1ef;
-    --border: #d9944f;
-    --green: #4caf50;
-    --ink: #222;
-  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    min-height: 100vh;
-    background: var(--bg);
-    font-family: "Noto Sans Myanmar", Arial, sans-serif;
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .wrap {
-    width: 100%;
-    max-width: 1300px;
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 40px;
-    align-items: center;
-  }
+  body { background:#e6e6e3; font-family:"Noto Sans Myanmar", Arial, sans-serif; color:#111; overflow:hidden; }
+  .wrap { position:absolute; left:0; top:0; width:1376px; height:768px; padding:16px 36px; transform-origin:0 0;
+          display:grid; grid-template-columns: 1fr 360px; gap:40px; align-items:center; }
+  .L { display:grid; grid-template-columns: 340px 1fr; gap:16px; }
+  .card, .pill { background:#fff; border-radius:30px; box-shadow:0 3px 10px rgba(0,0,0,.08); text-align:center; }
+  .a { grid-row: 1 / 3; display:flex; flex-direction:column; justify-content:center; padding:20px; }
+  .a p { font-size:50px; font-weight:800; line-height:1.4; }
+  .a .t { font:800 56px Arial, sans-serif; margin-top:6px; }
+  .b { padding:18px 20px; }
+  .b .d { font:800 62px Arial, sans-serif; }
+  .b hr { border:none; border-top:3px solid #d0d0d0; margin:8px 0 10px; }
+  .b .t { font:800 50px Arial, sans-serif; color:#9b1c24; }
+  .c { display:flex; align-items:center; justify-content:center; gap:22px; font-weight:800; padding:22px; }
+  .c span:first-child { font-size:50px; }
+  .c #tip { font:800 54px Arial, sans-serif; letter-spacing:4px; }
+  .pills { grid-column:1 / 3; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .pill { padding:16px 10px; font:800 50px Arial, sans-serif; color:#9c7a3c; border-radius:44px; }
+  .e { grid-column:1 / 3; display:grid; grid-template-columns:1fr 1.15fr 1.4fr; padding:22px 20px; }
+  .e small { display:block; font:800 42px Arial, sans-serif; color:#7a7a7a; }
+  .e b { display:block; font:800 52px Arial, sans-serif; color:#cf3a48; margin-top:6px; }
+  .foot { grid-column:1 / 3; display:flex; align-items:center; gap:26px; }
+  .subscribe { display:inline-flex; align-items:center; gap:14px; background:#b9282c; color:#fff; border-radius:12px;
+               padding:14px 38px; font:800 34px Arial, sans-serif; box-shadow:0 3px 10px rgba(0,0,0,.2); white-space:nowrap; }
+  .note { font-size:21px; line-height:1.5; color:#555; font-weight:600; }
 
-  /* ---------- Left side ---------- */
-  .top {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 28px;
-  }
-  .logo {
-    width: 100px; height: 100px;
-    background: var(--red);
-    border-radius: 18px;
-    color: #fff;
-    font: 900 52px/1 Arial, sans-serif;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,.25);
-  }
-  .logo::before {
-    content: "2D";
-    position: absolute; top: 6px; right: 12px;
-    font-size: 14px; font-weight: 700;
-  }
-  .arrow {
-    width: 0; height: 0;
-    border-top: 34px solid transparent;
-    border-bottom: 34px solid transparent;
-    border-left: 70px solid var(--red);
-    position: relative;
-  }
-  .promo {
-    flex: 1;
-    text-align: center;
-    font-size: 26px;
-    line-height: 1.5;
-  }
-  .promo b { font-style: italic; }
+  /* phone */
+  .phone { width:360px; height:736px; background:#fff; border:9px solid #cfcfd2; border-radius:50px; overflow:hidden;
+           box-shadow:0 8px 24px rgba(0,0,0,.3); position:relative; display:flex; flex-direction:column; }
+  .phone .notch { position:absolute; top:10px; left:50%; transform:translateX(-50%); width:110px; height:28px; background:#111; border-radius:20px; z-index:2; }
+  .bar { background:#f5d44f; height:82px; padding:12px 18px 0; display:flex; justify-content:space-between; align-items:flex-start; font-size:21px; font-weight:600; }
+  .bar small { display:block; font-size:12px; font-weight:500; }
+  .big { text-align:center; font:900 150px/1.05 Georgia, "Times New Roman", serif; color:#4caf50; margin-top:6px; }
+  .updated { text-align:center; font:italic 600 13px Arial, sans-serif; color:#333; margin:6px 0 12px; }
+  .box { background:#e8392f; color:#fff; border-radius:10px; margin:0 12px 10px; padding:10px 12px; box-shadow:0 2px 5px rgba(0,0,0,.25); }
+  .box .h { text-align:center; font-size:19px; font-weight:600; border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:6px; }
+  .row { display:flex; justify-content:space-around; align-items:flex-end; padding-top:8px; text-align:center; }
+  .row small { display:block; font-size:12px; opacity:.9; }
+  .row em { font:600 18px Arial, sans-serif; font-style:normal; }
+  .row b { font:700 26px Arial, sans-serif; color:#ffd33d; }
+  .sep { border:none; border-top:1px solid #ddd; margin:2px 12px 10px; }
+  .box.m { display:flex; align-items:center; justify-content:space-between; }
+  .box.m .tm { font:700 20px Arial, sans-serif; width:60px; line-height:1.2; }
+  .box.m .row { flex:1; padding-top:0; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 290px 1fr 1fr;
-    gap: 22px 22px;
-  }
-  .card {
-    background: var(--card);
-    border: 4px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    text-align: center;
-    box-shadow: 0 3px 8px rgba(0,0,0,.18);
-  }
-  .date    { grid-column: 1; grid-row: 1; }
-  .set     { grid-column: 2 / 4; grid-row: 1; }
-  .gannan  { grid-column: 1; grid-row: 2 / 4; display: flex; flex-direction: column; justify-content: center; }
-  .am      { grid-column: 2; grid-row: 2; }
-  .pm      { grid-column: 3; grid-row: 2; }
-  .kyi     { grid-column: 2 / 4; grid-row: 3; background: linear-gradient(90deg,#fff7d6,#f9e48a); }
-
-  .date .d, .date .t {
-    color: var(--red-dark);
-    font: 700 30px/1.3 Arial, sans-serif;
-  }
-  .set small { font: 600 17px Arial, sans-serif; display: block; margin-bottom: 6px; }
-  .set strong { font: 700 34px Arial, sans-serif; }
-
-  .gannan p { font-size: 30px; font-weight: 700; line-height: 1.4; }
-  .gannan .time { color: var(--red-dark); font: 700 38px Arial, sans-serif; margin-top: 14px; }
-
-  .slot .label { font: 600 30px Arial, sans-serif; }
-  .slot .num   { font: italic 800 46px Arial, sans-serif; color: var(--green); }
-  .kyi p { font-size: 30px; font-weight: 700; }
-
-  .bottom {
-    display: flex; align-items: center; gap: 40px;
-    margin-top: 32px;
-  }
-  .bottom .logo { width: 92px; height: 92px; font-size: 48px; }
-  .bottom h2 { font: 800 38px Arial, sans-serif; color: #3b3b2c; }
-  .subscribe {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: var(--red);
-    color: #fff;
-    border: 3px solid #fff;
-    border-radius: 10px;
-    padding: 10px 28px;
-    font: 800 34px Arial, sans-serif;
-    box-shadow: 0 4px 10px rgba(0,0,0,.3);
-    cursor: pointer;
-  }
-  .bell {
-    width: 42px; height: 42px; border-radius: 8px;
-    background: #fff; color: var(--red);
-    display: grid; place-items: center; font-size: 26px;
-  }
-
-  /* ---------- Phone ---------- */
-  .phone {
-    width: 300px;
-    height: 620px;
-    background: #fff;
-    border: 12px solid #2a2a2a;
-    border-radius: 42px;
-    overflow: hidden;
-    box-shadow: 0 10px 24px rgba(0,0,0,.35);
-    display: flex; flex-direction: column;
-    position: relative;
-  }
-  .phone .notch {
-    position: absolute; top: 8px; left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 22px;
-    background: #111; border-radius: 20px;
-  }
-  .phone .bar {
-    background: #f5d44f;
-    height: 62px;
-    display: flex; align-items: flex-end; justify-content: space-around;
-    padding-bottom: 6px;
-    font-size: 16px;
-  }
-  .big { text-align: center; font: 800 100px/1.1 Arial, sans-serif; margin-top: 18px; }
-  .updated { text-align: center; font-size: 10px; color: #777; margin: 4px 0 12px; }
-  .box {
-    background: #d92b2b;
-    color: #fff;
-    border-radius: 8px;
-    margin: 0 10px 10px;
-    padding: 8px 10px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,.25);
-  }
-  .box .h { font-size: 12px; border-bottom: 1px solid rgba(255,255,255,.4); padding-bottom: 4px; }
-  .row { display: flex; justify-content: space-around; align-items: center; padding-top: 10px; font-size: 11px; }
-  .row b { color: #ffd84a; font: 700 18px Arial, sans-serif; }
-  .box.three .row b { font-size: 18px; }
-  .navbtm { margin-top: auto; background: #000; height: 36px; }
-
-  .row small { font-size: 9px; opacity: .8; }
-  .row em { font-style: normal; font-size: 13px; }
   .blink { animation: blink 1s steps(2, start) infinite; }
-  @keyframes blink { to { visibility: hidden; } }
-  @media (prefers-reduced-motion: reduce) { .blink { animation: none; } }
+  @keyframes blink { to { visibility:hidden; } }
+  .subscribe i { font-style:normal; display:inline-block; transform-origin:50% 10%; animation: ring 2.6s ease-in-out infinite; }
+  @keyframes ring { 0%,60%,100% { transform:rotate(0); } 10% { transform:rotate(16deg); } 20% { transform:rotate(-14deg); } 30% { transform:rotate(12deg); } 40% { transform:rotate(-9deg); } 50% { transform:rotate(5deg); } }
+  .subscribe { animation: subPulse 1.8s ease-in-out infinite; }
+  @keyframes subPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
 
-  /* ---------- Responsive ---------- */
-  @media (max-width: 1000px) {
-    .wrap { grid-template-columns: 1fr; justify-items: center; }
-    .phone { order: 2; }
-  }
-  @media (max-width: 720px) {
-    .grid { grid-template-columns: 1fr 1fr; }
-    .date, .set, .gannan, .am, .pm, .kyi { grid-column: auto; grid-row: auto; }
-    .set, .kyi, .gannan { grid-column: 1 / 3; }
-    .top, .bottom { flex-wrap: wrap; justify-content: center; }
-    .promo { font-size: 20px; }
-  }
-  /* ---- stream mode: fixed canvas, scaled to viewport ---- */
-  body { display: block; padding: 0; overflow: hidden; }
-  .wrap { position: absolute; left: 0; top: 0; width: 1376px; height: 768px; max-width: none;
-          padding: 34px 40px; transform-origin: 0 0; }
+  /* ===== Bigger phone (main focus) ===== */
+  .wrap  { grid-template-columns: 1fr 440px; gap: 36px; padding: 8px 36px; }
+  .L     { grid-template-columns: 300px 1fr; }
+  .a p   { font-size: 46px; }
+  .a .t  { font-size: 52px; }
+  .b .d  { font-size: 56px; }
+  .b .t  { font-size: 46px; }
+  .c span:first-child { font-size: 46px; }
+  .c #tip { font-size: 50px; }
+  .pill  { font-size: 46px; }
+  .e small { font-size: 38px; }
+  .e b   { font-size: 44px; }
+  .phone { width: 440px; height: 752px; border-width: 9px; border-radius: 56px; }
+  .phone .notch { width: 120px; height: 30px; }
+  .bar   { height: 88px; padding-top: 14px; font-size: 26px; }
+  .bar small { font-size: 14px; }
+  .big   { font-size: 190px; margin-top: 4px; }
+  .updated { font-size: 16px; margin: 4px 0 10px; }
+  .box   { margin: 0 14px 10px; padding: 10px 14px; border-radius: 12px; }
+  .box .h { font-size: 23px; padding-bottom: 6px; }
+  .row   { padding-top: 8px; }
+  .row small { font-size: 16px; }
+  .row em { font-size: 23px; }
+  .row b { font-size: 33px; }
+  .sep   { margin: 0 14px 10px; }
+  .box.m { padding: 8px 14px; }
+  .box.m .tm { font-size: 19px; width: 64px; }
+  .box.m .row b { font-size: 30px; }
+  .box.m .row small { font-size: 14px; }
 
-  /* ================= Animations (top promo + bottom bar) ================= */
-  :root { --glow: rgba(212,32,39,.55); }
-  /* ထိပ်ပိုင်း */
-  .top .logo   { animation: logoPulse 2.4s ease-in-out infinite; }
-  .top .arrow  { animation: arrowNudge 1s ease-in-out infinite; }
-  .promo       { animation: promoGlow 2.2s ease-in-out infinite; }
-  /* အောက်ခြေ */
-  .bottom .logo { animation: logoBounce 1.8s ease-in-out infinite; }
-  .bottom h2   { animation: titlePulse 2s ease-in-out infinite; transform-origin: left center; }
-  .subscribe   { position: relative; overflow: hidden; animation: subPulse 1.6s ease-in-out infinite; }
-  .subscribe::after {
-    content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent);
-    transform: skewX(-20deg); animation: shine 2.6s ease-in-out infinite;
-  }
-  .bell i { display: inline-block; font-style: normal; transform-origin: 50% 10%; animation: ring 2.6s ease-in-out infinite; }
+  /* ===== Bigger phone ===== */
+  .wrap  { padding: 8px 32px; grid-template-columns: 1fr 460px; gap: 36px; }
+  .L     { grid-template-columns: 330px 1fr; }
+  .a p   { font-size: 46px; }
+  .e small { font-size: 38px; }
+  .e b   { font-size: 44px; }
+  .phone { width: 460px; height: 752px; border-width: 10px; border-radius: 56px; }
+  .phone .notch { width: 130px; height: 32px; top: 12px; }
+  .bar   { height: 80px; padding: 14px 22px 0; font-size: 24px; }
+  .bar small { font-size: 14px; }
+  .big   { font-size: 160px; margin-top: 4px; }
+  .updated { font-size: 16px; margin: 4px 0 10px; }
+  .box   { margin: 0 14px 10px; padding: 8px 14px; border-radius: 12px; }
+  .box .h { font-size: 22px; padding-bottom: 4px; }
+  .row   { padding-top: 8px; }
+  .row small { font-size: 14px; }
+  .row em { font-size: 22px; }
+  .row b { font-size: 32px; }
+  .box.m .tm { font-size: 24px; width: 72px; }
+  .box.m .row b { font-size: 28px; }
+  .sep   { margin: 0 14px 8px; }
 
-  @keyframes logoPulse  { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-  @keyframes logoBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  @keyframes arrowNudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(16px); } }
-  @keyframes promoGlow  { 0%,100% { transform: scale(1); text-shadow: 0 0 0 transparent; }
-                          50% { transform: scale(1.03); text-shadow: 0 0 14px var(--glow); } }
-  @keyframes titlePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-  @keyframes subPulse   { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-  @keyframes shine      { 0%,55% { left: -60%; } 100% { left: 130%; } }
-  @keyframes ring { 0%,60%,100% { transform: rotate(0); } 10% { transform: rotate(16deg); } 20% { transform: rotate(-14deg); }
-                   30% { transform: rotate(12deg); } 40% { transform: rotate(-9deg); } 50% { transform: rotate(5deg); } }
-  @media (prefers-reduced-motion: reduce) { .top *, .bottom *, .promo, .subscribe::after { animation: none !important; } }
-
-  /* ================= Bigger phone (main focus) ================= */
-  .wrap  { grid-template-columns: 1fr 400px; gap: 30px; padding: 12px 40px; }
-  .phone { width: 400px; height: 744px; border-width: 14px; border-radius: 56px; }
-  .phone .notch { width: 110px; height: 28px; top: 10px; }
-  .phone .bar   { height: 90px; font-size: 24px; padding-bottom: 8px; }
-  .big     { font-size: 180px; margin-top: 26px; }
-  .updated { font-size: 14px; margin: 6px 0 20px; }
-  .box     { margin: 0 16px 14px; padding: 16px 18px; border-radius: 14px; }
-  .box .h  { font-size: 19px; padding-bottom: 6px; }
-  .row     { padding-top: 16px; }
-  .row small { font-size: 13px; }
-  .row em  { font-size: 20px; }
-  .row b   { font-size: 34px; }
-  .navbtm  { height: 48px; }
+  /* ===== bigger phone (ပိုကြီး/ပိုရှင်း) ===== */
+  .wrap  { padding: 8px 32px; grid-template-columns: 1fr 460px; gap: 34px; }
+  .L     { grid-template-columns: 310px 1fr; }
+  .pill  { font-size: 44px; }
+  .e b   { font-size: 48px; }
+  .phone { width: 460px; height: 752px; border-width: 10px; border-radius: 56px; }
+  .phone .notch { width: 130px; height: 32px; }
+  .bar   { height: 84px; font-size: 24px; }
+  .bar small { font-size: 14px; }
+  .big   { font-size: 170px; }
+  .updated { font-size: 15px; margin: 4px 0 10px; }
+  .box   { margin: 0 14px 10px; padding: 10px 14px; }
+  .box .h { font-size: 23px; padding-bottom: 6px; }
+  .row small { font-size: 14px; }
+  .row em { font-size: 23px; }
+  .row b  { font-size: 32px; }
+  .box.m .tm { font-size: 24px; width: 76px; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <main>
-      <div class="top">
-        <div class="logo">2D</div>
-        <div class="arrow"></div>
-        <p class="promo"><b>ဤ App ကို Comment Link မှ</b><br>Download ရယူနိုင်ပါသည်</p>
-      </div>
+<div class="wrap">
+  <main class="L">
+    <div class="card a"><p>ဂဏန်းထွက်<br>ရန်အချိန်</p><div class="t" id="drawTime">12:01</div></div>
+    <div class="card b"><div class="d" id="dDate">--</div><hr><div class="t" id="dTime">--</div></div>
+    <div class="card c"><span>ကျပန်း</span><span id="tip">- - -</span></div>
+    <div class="pills">
+      <div class="pill">11:00AM(<span id="am">--</span>)</div>
+      <div class="pill">03:00PM(<span id="pm">--</span>)</div>
+    </div>
+    <div class="card e">
+      <div><small>Now</small><b>Live</b></div>
+      <div><small>Set</small><b id="nowSet">--</b></div>
+      <div><small>Value</small><b id="nowVal">--</b></div>
+    </div>
+    <div class="foot">
+      <div class="subscribe"><i>🔔</i> SUBSCRIBE</div>
+      <div class="note">ကျပန်းဂဏန်းများသည် Auto generate တန်ဖိုးများသာဖြစ်ပြီး ခန့်မှန်းချက် မဟုတ်ပါ။</div>
+    </div>
+  </main>
 
-      <div class="grid">
-        <div class="card date">
-          <div class="d" id="dDate">--</div>
-          <div class="t" id="dTime">--</div>
-        </div>
-
-        <div class="card set">
-          <small>Stock Exchange of Thailand</small>
-          <strong>Open SET = <span id="setVal">--</span></strong>
-        </div>
-
-        <div class="card gannan">
-          <p>ဂဏန်းထွက်ရန်<br>အချိန်</p>
-          <div class="time" id="drawTime">4:30 PM</div>
-        </div>
-
-        <div class="card slot am">
-          <div class="label">11:00 AM</div>
-          <div class="num" id="am">--</div>
-        </div>
-
-        <div class="card slot pm">
-          <div class="label">3:00 PM</div>
-          <div class="num" id="pm">--</div>
-        </div>
-
-        <div class="card kyi">
-          <p>ကီး: <span id="kyi">-, -, -</span></p>
-        </div>
-      </div>
-
-      <div class="bottom">
-        <div class="logo">2D</div>
-        <h2>2D3D Live</h2>
-        <div class="subscribe"><span class="bell"><i>🔔</i></span>SUBSCRIBE</div>
-      </div>
-    </main>
-
-    <aside class="phone" aria-label="Phone preview">
-      <div class="notch"></div>
-      <div class="bar"><span>🏠</span><span>📅</span><span>⏰</span><span>NO</span><span>🌐</span></div>
-      <div class="big" id="liveNum">--</div>
-      <div class="updated" id="updated">Updated : --</div>
-
-      <div class="box"><div class="h" id="c1Head">12:01 PM</div>
-        <div class="row"><span><small>SET</small><br><em id="c1Set">--</em></span><span><small>Value</small><br><em id="c1Val">--</em></span><b id="c1Res">--</b></div></div>
-      <div class="box"><div class="h" id="c2Head">4:30 PM</div>
-        <div class="row"><span><small>SET</small><br><em id="c2Set">--</em></span><span><small>Value</small><br><em id="c2Val">--</em></span><b id="c2Res">--</b></div></div>
-      
-      <div class="navbtm"></div>
-    </aside>
-  </div>
+  <aside class="phone" aria-label="Phone preview">
+    <div class="notch"></div>
+    <div class="bar"><div>Myanmar<small>v1.6.8</small></div><div>📅 &nbsp;⋮</div></div>
+    <div class="big" id="liveNum">--</div>
+    <div class="updated" id="updated">Updated: --</div>
+    <div class="box"><div class="h">12:01 PM</div>
+      <div class="row"><span><small>SET</small><em id="c1Set">--</em></span><span><small>Value</small><em id="c1Val">--</em></span><span><small>2D</small><b id="c1Res">--</b></span></div></div>
+    <div class="box"><div class="h">4:30 PM</div>
+      <div class="row"><span><small>SET</small><em id="c2Set">--</em></span><span><small>Value</small><em id="c2Val">--</em></span><span><small>2D</small><b id="c2Res">--</b></span></div></div>
+    <hr class="sep">
+    <div class="box m"><div class="tm">9:30<br>AM</div>
+      <div class="row"><span><small>Internet</small><b id="m1I">--</b></span><span><small>Thai 2D</small><b id="m1T">--</b></span></div></div>
+    <div class="box m"><div class="tm">2:00<br>PM</div>
+      <div class="row"><span><small>Internet</small><b id="m2I">--</b></span><span><small>Thai 2D</small><b id="m2T">--</b></span></div></div>
+  </aside>
+</div>
 <script>
 /* ============ CONFIG ============ */
 const CONFIG = {
@@ -310,15 +175,18 @@ const CONFIG = {
 
 /* 11:00 / 12:01 / 15:00 / 16:30 — ဒီအချိန်ပြတင်းပေါက်အတွင်း API တန်ဖိုးကို JSON အဖြစ် သိမ်းမယ် */
 const SLOTS = {
+  "09:30": ["09:30:00", "09:33:00"],            // Internet / Thai 2D (page က အဲဒီအချိန်မှာ run နေမှ ရ)
   "11:00": ["11:00:00", "11:03:00"],
   "12:01": ["12:01:13", "12:04:00", "once"],   // 12:01:13 နောက်ပိုင်း ပထမဆုံးတန်ဖိုး = final (ထပ်မပြောင်း)
+  "14:00": ["14:00:00", "14:03:00"],
   "15:00": ["15:00:00", "15:03:00"],
   "16:30": ["16:30:13", "16:33:00", "once"]
 };
 
 function parseApi(raw) {
   const d = raw.data || {};
-  return { date: d.date, time: d.time, set: d.set, value: d.value, twod: d.twod };
+  const m = d.modern || {};
+  return { date: d.date, time: d.time, set: d.set, value: d.value, twod: d.twod, internet: m.internet, tw: m.thai_2d };
 }
 
 /* ============ Helpers ============ */
@@ -386,7 +254,7 @@ function snapshot(now) {
   for (const [k, [from, to, once]] of Object.entries(SLOTS)) {
     if (once && snaps[k]) continue;                           // final ဖြစ်ပြီးသား → ထပ်မသိမ်း
     if (live.time >= from && live.time < to && live.twod) {   // ပြတင်းပေါက်အတွင်း သိမ်း
-      snaps[k] = { twod: live.twod, set: live.set, value: live.value };
+      snaps[k] = { twod: live.twod, set: live.set, value: live.value, internet: live.internet, tw: live.tw };
       changed = true;
     }
   }
@@ -418,39 +286,42 @@ function nextDelay() {
 }
 
 /* ============ Render ============ */
-function fillCard(i, label, now, snap, isFinal) {
-  const src = isFinal ? snap : live;
-  $("c" + i + "Head").textContent = now.date + "  " + label;
-  $("c" + i + "Set").textContent = dash(src && src.set);
-  $("c" + i + "Val").textContent = dash(src && src.value);
-  $("c" + i + "Res").textContent = isFinal ? dash(snap.twod) : "--";
+const fmt = x => { const n = Number(x); return (x === undefined || x === null || x === "" || !isFinite(n)) ? "--" : n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+
+function card(i, snap) {          // ဖုန်းထဲ 12:01 / 4:30 ကတ် - final ထွက်မှ ဖြည့် (မထွက်သေးရင် --)
+  $("c" + i + "Set").textContent = fmt(snap && snap.set);
+  $("c" + i + "Val").textContent = fmt(snap && snap.value);
+  $("c" + i + "Res").textContent = dash(snap && snap.twod);
+}
+function modern(id, snap) {
+  $(id + "I").textContent = dash(snap && snap.internet);
+  $(id + "T").textContent = dash(snap && snap.tw);
 }
 
 function render() {
   const now = mmNow();
-  $("dDate").textContent = now.date;
+  $("dDate").textContent = now.date.replace(/-/g, ".");
   $("dTime").textContent = now.time;
-  $("kyi").textContent = getKyi(now.key).join(", ");
+  $("tip").textContent = getKyi(now.key).join(" ");           // ကျပန်းဂဏန်း (JSON နဲ့ သိမ်း)
 
   const snaps = loadJson("snapshots", now.key) || {};
   const morning = now.mins < 13 * 60;
-  
+  const done1 = !!snaps["12:01"], done2 = !!snaps["16:30"];
+  $("drawTime").textContent = (morning && !done1) ? "12:01" : "4:30";
 
-  $("setVal").textContent = dash(live && live.set);
   $("am").textContent = dash(snaps["11:00"] && snaps["11:00"].twod);
   $("pm").textContent = dash(snaps["15:00"] && snaps["15:00"].twod);
+  $("nowSet").textContent = fmt(live && live.set);
+  $("nowVal").textContent = fmt(live && live.value);
 
-  const done1 = !!snaps["12:01"];
-  const done2 = !!snaps["16:30"];
-  $("drawTime").textContent = (morning && !done1) ? "12:01 PM" : "4:30 PM";
-  fillCard(1, "12:01 PM", now, snaps["12:01"], done1);
-  fillCard(2, "4:30 PM", now, snaps["16:30"], done2);
+  card(1, snaps["12:01"]); card(2, snaps["16:30"]);
+  modern("m1", snaps["09:30"]); modern("m2", snaps["14:00"]);
 
   const finalNow = morning ? done1 : done2;
   const el = $("liveNum");
   el.textContent = finalNow ? snaps[morning ? "12:01" : "16:30"].twod : dash(live && live.twod);
   el.classList.toggle("blink", !finalNow && !!(live && live.twod));
-  $("updated").textContent = "Updated : " + dash(lastOk);
+  $("updated").textContent = "Updated: " + (live && live.date ? live.date + " " + live.time : "--");
 }
 
 /* ============ Fit canvas to screen ============ */
