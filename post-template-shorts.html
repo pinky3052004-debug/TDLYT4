@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="my" translate="no">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; }
+  body { font-family: "Noto Sans Myanmar", Arial, sans-serif; color: #111; font-weight: 800; background: #e6e6e3;
+         display: flex; flex-direction: column; justify-content: space-between; padding: 150px 56px 190px; text-align: center; }
+  .card { background: #fff; border-radius: 48px; box-shadow: 0 6px 18px rgba(0,0,0,.10); padding: 44px 30px; }
+  .date { font: 900 92px Arial, sans-serif; }
+  .slot { font: 900 70px Arial, sans-serif; color: #9b1c24; margin-top: 8px; }
+  .label { font-size: 48px; color: #777; margin-bottom: 14px; }
+  .big { font: 900 190px/1.05 Arial, sans-serif; letter-spacing: 4px; color: #4caf50; }
+  .big.pairs { font-size: 150px; color: #9c7a3c; }
+  .note { background: #fff; border: 5px solid #111; border-radius: 40px; padding: 36px 34px; font-size: 44px; line-height: 1.65; }
+  .note small { display: block; font-size: 37px; margin-top: 10px; color: #333; }
+  .brand { font: 900 66px Arial, sans-serif; }
+</style>
+</head>
+<body>
+  <div class="card"><div class="date">{{DATE}}</div><div class="slot">({{SLOT}})</div></div>
+  <div class="card"><div class="label">ကျပန်းဂဏန်း ၃ လုံး</div><div class="big">{{D1}} {{D2}} {{D3}}</div></div>
+  <div class="card"><div class="label">တွဲဂဏန်းများ</div><div class="big pairs">{{P1}}*{{P2}}.{{P3}}</div></div>
+  <div class="note">
+    ဤဂဏန်းများသည် Auto generate လုပ်ထားသော တန်ဖိုးများသာ ဖြစ်ပါသည်။
+    <small>ခန့်မှန်းချက် မဟုတ်ပါ၊ ထိုးရန် အကြံပြုခြင်း မဟုတ်ပါ။ ပညာပေး၊ ဖျော်ဖြေရေးအတွက်သာ။</small>
+  </div>
+  <div class="brand">2D3D Live</div>
+</body>
+</html>
